@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { Option } from "../Option";
+import { Option } from "../interfaces";
 interface Props {
   term: string;
   option: Option[];
