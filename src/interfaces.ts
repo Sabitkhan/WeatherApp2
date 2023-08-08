@@ -1,5 +1,6 @@
 export interface Option {
   name: string;
+  country: string;
   lat: number;
   lon: number;
 }
@@ -8,12 +9,6 @@ interface Weather {
   icon: string;
   main: string;
   description: string;
-}
-
-interface Wind {
-  speed: number;
-  gust: number;
-  deg: number;
 }
 
 interface List {
@@ -27,7 +22,12 @@ interface List {
     temp_min: number;
   };
   weather: Weather[];
-  wind: Wind[];
+  wind: {
+    speed: number;
+    gust: number;
+    deg: number;
+  };
+
   clouds: {
     all: number;
   };

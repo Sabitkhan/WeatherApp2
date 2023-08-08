@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, ChangeEvent, useEffect } from "react";
-import { forecastData,Option } from "../interfaces";
+import { forecastData, Option } from "../interfaces";
 
 const useForecast = () => {
   const [term, setTerm] = useState<string>("");
@@ -14,7 +14,10 @@ const useForecast = () => {
       .get(
         `http://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&appid=${"8f80c01abdfcb585cbb43645e7b10956"}`
       )
-      .then((res) => setOption(res.data))
+
+      .then((res) => {
+        setOption(res.data);
+      })
       .catch((err) => setError(err.message));
   };
 
@@ -34,14 +37,13 @@ const useForecast = () => {
           city.lon
         }&units=metric&appid=${"8f80c01abdfcb585cbb43645e7b10956"}`
       )
-      .then((res) =>{ 
+      .then((res) => {
         const forecastData = {
-            ...res.data.city,
-            list:res.data.list.slice(0,16)
-        }
-        setForecast(forecastData)
-    
-    })
+          ...res.data.city,
+          list: res.data.list.slice(0, 16),
+        };
+        setForecast(forecastData);
+      })
       .catch((err) => setError(err.message));
   };
 
